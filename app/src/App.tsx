@@ -1,27 +1,30 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-// 404
-import NoMatch from "@/pages/NoMatch/404";
+import NoMatch from "@/pages/NoMatch/404"; // 404
+import Home from "@/pages/HomePage"; // Landing page
 
-// homepage
-import Home from "./layout/Navbar";
+import Events from "@/pages/Event/EventListPage"; // events
+import OrganizeEvents from "@/pages/Event/EventCreatePage"; // create event form
+import EventDetails from "@/pages/Event/EventDetailPage"; // event detail by id
+import RegisterPage from "./pages/Login&Register/RegisterPage";
 
-// events
-import Events from "@/pages/Event/EventListPage";
-import OrganizeEvents from "@/pages/Event/EventCreatePage";
-import EventDetails from "@/pages/Event/EventDetailPage";
+// import MyEvents from "@/pages/Profile/MyEventsPage" // assign event list
 
 export default function App() {
   return (
-    <div className="app px-12 py-8">
+    <div className="app px-48 py-8 text-lg">
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="events" element={<Events />} />
-          <Route path="organize" element={<OrganizeEvents />} />
-          <Route path="*" element={<NoMatch />} />
 
-          <Route path="/events/:id" element={<EventDetails />} />
+          <Route path="register" element={<RegisterPage />} />
+
+          <Route path="events" element={<Events />} />
+          <Route path="events/:id" element={<EventDetails />} />
+
+          <Route path="organize" element={<OrganizeEvents />} />
+
+          <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
     </div>
