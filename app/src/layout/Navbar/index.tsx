@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="flex items-center justify-between py-8">
       <div className="flex items-center gap-4">
-        {/* Logo & Navigation Itens */}
         <img
           className="mb-3 w-20"
           src={
@@ -25,9 +24,7 @@ export default function Navbar() {
         </li>
       </div>
 
-      {/* Subscribe & Search */}
       <div className="flex items-center gap-3">
-        {/* //TODO: Colocar ícone de lupa no input de pesquisa e deixar ele funcional  */}
         <input
           type="text"
           className="rounded-3xl border-2 border-solid border-gray-200 bg-magnifier bg-[length:1.25rem] bg-[0.75rem] bg-no-repeat px-4 py-2 indent-6 text-base outline-none"

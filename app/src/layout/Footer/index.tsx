@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <div className="mt-48 flex flex-col">
-      <div className="items-top flex justify-between">
+    <div className="bottom-0 flex flex-col py-8 pt-48">
+      <div className="flex items-start justify-between">
         <div className="logo flex items-center gap-4">
           <img
             className="mb-3 w-20"
@@ -84,7 +84,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <p className="my-16 self-center">© 2024 CodePraesto, Inc</p>
+      <p className="self-center pt-16">© 2024 CodePraesto, Inc</p>
     </div>
   );
 }

@@ -7,17 +7,19 @@ import Events from "@/pages/Event/EventListPage"; // events
 import OrganizeEvents from "@/pages/Event/EventCreatePage"; // create event form
 import EventDetails from "@/pages/Event/EventDetailPage"; // event detail by id
 import RegisterPage from "./pages/Login&Register/RegisterPage";
+import LoginPage from "./pages/Login&Register/loginPage";
 
 // import MyEvents from "@/pages/Profile/MyEventsPage" // assign event list
 
 export default function App() {
   return (
-    <div className="app px-48 py-8 text-lg">
+    <div className="app px-48 text-lg">
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
 
           <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
 
           <Route path="events" element={<Events />} />
           <Route path="events/:id" element={<EventDetails />} />
