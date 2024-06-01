@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
 import Navbar from "@/layout/Navbar";
-import { Link } from "react-router-dom";
-
-import axios, { AxiosResponse } from "axios";
+import EventSection from "@/layout/EventList/EventSection";
+import EventSearchTopicSection from "@/layout/EventList/EventSearchTopicSection";
+import { Flame } from "lucide-react";
+import Footer from "@/layout/Footer";
+import CardListItem from "@/layout/Cards/CardListItem";
 
 // interface Event {
 //   id: number;
@@ -29,20 +30,22 @@ export default function EventListPage() {
   return (
     <div>
       <Navbar />
-      {/* <ul className="my-8 grid grid-cols-5 gap-4">
-        {events.map((item) => (
-          <li key={item.id} className="">
-            <Link
-              to={`/events/${item.id}`}
-              className="flex w-[200px] flex-col rounded-lg py-4 text-blue-500 outline-none hover:underline"
-            >
-              <h1 className="text-xl font-bold">{item.title}</h1>
-              <p>{item.subtitle}</p>
-              <p>{item.start_date}</p>
-            </Link>
-          </li>
-        ))}
-      </ul> */}
+      <EventSection />
+      <EventSearchTopicSection />
+      <div className="mt-12 flex gap-4">
+        <Flame />
+        <h1 className="text-2xl font-bold">Competições Ativas</h1>
+      </div>
+      <div className="flex flex-wrap justify-start gap-[116px]">
+        <CardListItem />
+        <CardListItem />
+        <CardListItem />
+        <CardListItem />
+        <CardListItem />
+        <CardListItem />
+        <CardListItem />
+      </div>
+      <Footer />
     </div>
   );
 }

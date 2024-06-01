@@ -1,6 +1,6 @@
+import RegisterForm from "@/Components/RegisterForm";
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
-import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
   return (
@@ -16,33 +16,7 @@ export default function RegisterPage() {
             participar dos eventos!
           </p>
         </div>
-        <div className="right flex flex-col items-center gap-4">
-          <input
-            type="text"
-            className="rounded-3xl border-2 border-solid border-gray-200 px-4 py-2 text-base outline-none placeholder:text-gray-600"
-            placeholder="e-mail"
-            required
-          />
-          <input
-            type="text"
-            className="rounded-3xl border-2 border-solid border-gray-200 px-4 py-2 text-base outline-none placeholder:text-gray-600"
-            placeholder="username"
-            required
-          />
-          <input
-            type="text"
-            className="rounded-3xl border-2 border-solid border-gray-200 px-4 py-2 text-base outline-none placeholder:text-gray-600"
-            placeholder="senha"
-            required
-          />
-          <Link
-            to={"/register"}
-            className="w-44 rounded-full bg-black px-8 py-3 font-bold text-white hover:shadow-md"
-            // onSubmit={}
-          >
-            Registre-se
-          </Link>
-        </div>
+        <RegisterForm />
       </div>
       <Footer />
     </div>

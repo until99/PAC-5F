@@ -1,7 +1,0 @@
-[text](https://imgur.com/NfvU0aY)
-[text](https://imgur.com/765nZAq)
-[text](https://imgur.com/iqpRUJZ)
-[text](https://imgur.com/LJarnj1)
-[text](https://imgur.com/pacw127)
-[text](https://imgur.com/qLQj0HB)
-[text](https://imgur.com/8fQm1rq)

@@ -30,7 +30,7 @@ export default function LoginPage() {
           />
           <Link
             to={"/login"}
-            className="w-44 rounded-full bg-black px-8 py-3 font-bold text-white hover:shadow-md"
+            className="w-44 rounded-full bg-black px-8 py-3 font-bold text-white text-center hover:shadow-md"
             // onSubmit={}
           >
             Login
