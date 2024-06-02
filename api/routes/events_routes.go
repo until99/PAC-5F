@@ -1,18 +1,14 @@
 package routes
 
 import (
-	"github.com/until99/PAC-5F/controllers"
-
 	"github.com/gin-gonic/gin"
+	"github.com/until99/PAC-5F/controllers"
 )
 
 func RegisterEventRoutes(router *gin.Engine) {
-	eventRoutes := router.Group("/events")
-	{
-		eventRoutes.POST("/", controllers.CreateEvent)
-		eventRoutes.GET("/", controllers.GetEvents)
-		eventRoutes.GET("/:id", controllers.GetEventByID)
-		eventRoutes.PUT("/:id", controllers.UpdateEvent)
-		eventRoutes.DELETE("/:id", controllers.DeleteEvent)
-	}
+	router.POST("/events", controllers.CreateEvent)
+	router.GET("/events", controllers.GetEvents)
+	router.GET("/events/:id", controllers.GetEventByID)
+	router.PUT("/events/:id", controllers.UpdateEvent)
+	router.DELETE("/events/:id", controllers.DeleteEvent)
 }

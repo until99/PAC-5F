@@ -1,9 +1,7 @@
-// event_controller.go
 package controllers
 
 import (
 	"context"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,79 +10,77 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func CreateEvent(c *gin.Context) {
-	var event models.Event
-	if err := c.ShouldBindJSON(&event); err != nil {
+func CreateUser(c *gin.Context) {
+	var user models.User
+	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	id, err := services.CreateEvent(context.Background(), event)
+	id, err := services.CreateUser(context.Background(), user)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	event.ID = id
-	c.JSON(http.StatusOK, event)
+	user.ID = id
+	c.JSON(http.StatusOK, user)
 }
 
-func GetEvents(c *gin.Context) {
-	events, err := services.GetEvents(context.Background())
+func GetUsers(c *gin.Context) {
+	users, err := services.GetUsers(context.Background())
 	if err != nil {
-		log.Printf("Error retrieving events: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	log.Printf("Retrieved events: %v", events)
-	c.JSON(http.StatusOK, events)
+	c.JSON(http.StatusOK, users)
 }
 
-func GetEventByID(c *gin.Context) {
+func GetUserByID(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
-	event, err := services.GetEventByID(context.Background(), id)
+	user, err := services.GetUserByID(context.Background(), id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	if event.ID.IsZero() {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Event not found"})
+	if user.ID.IsZero() {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
 	}
-	c.JSON(http.StatusOK, event)
+	c.JSON(http.StatusOK, user)
 }
 
-func UpdateEvent(c *gin.Context) {
+func UpdateUser(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
-	var event models.Event
-	if err := c.ShouldBindJSON(&event); err != nil {
+	var user models.User
+	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	err = services.UpdateEvent(context.Background(), id, event)
+	err = services.UpdateUser(context.Background(), id, user)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "Event updated successfully"})
+	c.JSON(http.StatusOK, gin.H{"message": "User updated successfully"})
 }
 
-func DeleteEvent(c *gin.Context) {
+func DeleteUser(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
-	err = services.DeleteEvent(context.Background(), id)
+	err = services.DeleteUser(context.Background(), id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "Event deleted successfully"})
+	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully"})
 }

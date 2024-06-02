@@ -1,3 +1,4 @@
+// config.go
 package config
 
 import (
@@ -14,14 +15,15 @@ var Client *mongo.Client
 
 func ConnectDB() {
 	clientOptions := options.Client().ApplyURI(os.Getenv("MONGO_URI"))
-	client, err := mongo.NewClient(clientOptions)
-	if err != nil {
-		log.Fatalf("Failed to create MongoDB client: %v", err)
-	}
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	err = client.Connect(ctx)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
 		log.Fatalf("Failed to connect to MongoDB: %v", err)
+	}
+	err = client.Ping(ctx, nil)
+	if err != nil {
+		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
 	Client = client
 	log.Println("Connected to MongoDB")
