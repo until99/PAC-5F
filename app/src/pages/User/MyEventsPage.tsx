@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ButtonGroup from "@/Components/ButtonGroup";
+import ButtonGroup from "@/components/ButtonGroup";
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
 import { Link } from "react-router-dom";

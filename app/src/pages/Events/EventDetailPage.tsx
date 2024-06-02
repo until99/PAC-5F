@@ -61,9 +61,9 @@ export default function EventDetailsPage() {
           </h1>
           <p className="mt-4 text-gray-500">Temporada 4, Episódio 3</p>
         </div>
-        <div className="img-wrapper flex h-[200px] justify-end">
+        <div className="img-wrapper flex h-[200px] w-[320px] items-center justify-center overflow-hidden rounded-lg">
           <img
-            className="w-[320px] rounded-lg"
+            className="w-full"
             src="https://i.pinimg.com/564x/47/f2/05/47f2052ecafc50946f90b8161b6f4ba6.jpg"
             // src="https://wallpapercave.com/wp/wp7473576.jpg"
             alt="event cover image"

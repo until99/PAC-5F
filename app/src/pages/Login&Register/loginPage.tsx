@@ -1,5 +1,6 @@
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
+
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
@@ -30,7 +31,7 @@ export default function LoginPage() {
           />
           <Link
             to={"/login"}
-            className="w-44 rounded-full bg-black px-8 py-3 font-bold text-white text-center hover:shadow-md"
+            className="w-44 rounded-full bg-black px-8 py-3 text-center font-bold text-white hover:shadow-md"
             // onSubmit={}
           >
             Login

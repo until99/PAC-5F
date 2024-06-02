@@ -1,6 +1,7 @@
-import RegisterForm from "@/Components/RegisterForm";
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
+
+import RegisterForm from "@/components/RegisterForm";
 
 export default function RegisterPage() {
   return (
