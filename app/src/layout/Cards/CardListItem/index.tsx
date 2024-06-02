@@ -1,17 +1,21 @@
 import { EllipsisVertical, Icon } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export default function CardListItem() {
+interface CardListItemProps {
+  id: number;
+  imgLink: string;
+}
+
+export default function CardListItem({ id, imgLink }: CardListItemProps) {
   return (
-    <a
-      href="#"
+    <Link
+      to={`/events/${id}`}
       className="mt-12 flex w-[308px] flex-col rounded-xl border border-gray-400"
     >
-      <div className="header-image max-h-[200px] bg-cover">
-        <img
-          className="rounded-t-xl"
-          src="https://i.imgur.com/48tuEpW.jpeg"
-          alt="teste"
-        />
+      <div className="header-image max-h-[200px] w-full">
+        {" "}
+        {/* // TODO: Arrumar posicionamento das images */}
+        <img className="max-h-[200px] rounded-t-xl" src={imgLink} alt="teste" />
       </div>
       <div className="card-body">
         <div className="card-title flex justify-between gap-4 p-4 pt-10">
@@ -30,6 +34,6 @@ export default function CardListItem() {
           <p className="text-base text-gray-500">2 meses atrás</p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

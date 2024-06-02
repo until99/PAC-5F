@@ -1,6 +1,7 @@
 import Navbar from "@/layout/Navbar";
 import { useState } from "react";
 import axios from "axios";
+import Footer from "@/layout/Footer";
 
 // interface Event {
 //   title: string;
@@ -53,6 +54,7 @@ export default function EventCreatePage() {
   return (
     <div>
       <Navbar />
+      <Footer />
 
       {/* <form onSubmit={handleSubmit} className="space-y-4">
         <div>

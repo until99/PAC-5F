@@ -18,7 +18,7 @@ export default function HomePage() {
       <Accordion />
       <ParticipateSection />
 
-      <CardSection title="Populares" href={"/test"} icon={Flame}>
+      <CardSection title="Populares" href={"/all-events"} icon={Flame}>
         <CardMinified
           title={"HackTech 2024"}
           businessName={"Tech Innovations Ltda."}
@@ -28,7 +28,7 @@ export default function HomePage() {
           description={
             "Desafio de programação de 48 horas para criar soluções inovadoras usando tecnologias de ponta."
           }
-          cardId={"/1"}
+          cardId={"/events/1"}
           price={"R$ 10.000,00"}
         />
 
@@ -41,7 +41,7 @@ export default function HomePage() {
           description={
             "Maratona de codificação de 24 horas para resolver problemas de alta complexidade e desenvolver projetos criativos."
           }
-          cardId={"/2"}
+          cardId={"/events/2"}
           price={"R$ 5.000 em dinheiro e oportunidade de estágio na DevLeague."}
         />
 
@@ -54,7 +54,7 @@ export default function HomePage() {
           description={
             "Hackaton de fim de semana para desenvolver soluções disruptivas nas áreas de inteligência artificial, IoT e blockchain."
           }
-          cardId={"/3"}
+          cardId={"/events/3"}
           price={
             "R$ 15.000 em prêmios e mentoria para desenvolvimento do projeto vencedor."
           }
