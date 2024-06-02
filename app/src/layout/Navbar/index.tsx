@@ -21,10 +21,10 @@ export default function Navbar() {
           <Link to="/organize" className="hover:text-gray-600">
             Organizar Evento
           </Link>
-          <Link to="/my-events" className="hover:text-gray-600">
+          <Link to="/user/my-events" className="hover:text-gray-600">
             Meus Eventos
           </Link>
-          <Link to="/profile" className="hover:text-gray-600">
+          <Link to="/user/profile" className="hover:text-gray-600">
             Profile
           </Link>
         </li>

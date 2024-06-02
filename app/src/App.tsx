@@ -9,6 +9,8 @@ import EventDetails from "@/pages/Event/EventDetailPage"; // event detail by id
 import RegisterPage from "./pages/Login&Register/RegisterPage";
 import LoginPage from "./pages/Login&Register/loginPage";
 import EventListGeneralPage from "./pages/Event/EventListGeneralPage";
+import MyEventsPage from "./pages/User/MyEventsPage";
+import ProfilePage from "./pages/User/ProfilePage";
 
 // import MyEvents from "@/pages/Profile/MyEventsPage" // assign event list
 
@@ -29,6 +31,9 @@ export default function App() {
 
           <Route path="organize" element={<OrganizeEvents />} />
           <Route path="all-events" element={<EventListGeneralPage />} />
+
+          <Route path="user/my-events" element={<MyEventsPage />} />
+          <Route path="user/profile" element={<ProfilePage />} />
 
           <Route path="*" element={<NoMatch />} />
         </Route>
