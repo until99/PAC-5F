@@ -10,12 +10,10 @@ export default function CardListItem({ id, imgLink }: CardListItemProps) {
   return (
     <Link
       to={`/events/${id}`}
-      className="mt-12 flex w-[308px] flex-col rounded-xl border border-gray-400"
+      className="mt-12 flex max-w-[308px] flex-col rounded-xl border border-gray-400 hover:shadow-lg"
     >
-      <div className="header-image max-h-[200px] w-full">
-        {" "}
-        {/* // TODO: Arrumar posicionamento das images */}
-        <img className="max-h-[200px] rounded-t-xl" src={imgLink} alt="teste" />
+      <div className="header-image flex max-h-[200px] w-full items-center justify-center overflow-hidden rounded-t-xl">
+        <img className="w-full" src={imgLink} alt="teste" />
       </div>
       <div className="card-body">
         <div className="card-title flex justify-between gap-4 p-4 pt-10">
