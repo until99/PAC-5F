@@ -35,7 +35,7 @@ export default function CardListMinItem({
         <div className="card-body flex flex-col justify-between">
           <h1 className="text-2xl font-bold">{title}</h1>
           <p className="text-gray-600">
-            {eventType} - R${rewardPrice}
+            {eventType} {rewardPrice !== 0 && <>- R$ {rewardPrice}</>}
           </p>
           <p className="text-gray-600">
             {partipationsCount} inscritos - {daysAfterStart} dias atrás

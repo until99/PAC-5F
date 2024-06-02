@@ -10,6 +10,11 @@ export default function Participating() {
       />
       <CardListMinItem
         id={1}
+        title={"Steel Plate Defect Prediction"}
+        eventType={"Patrocinada"}
+        rewardPrice={999.99}
+        partipationsCount={1241}
+        daysAfterStart={14}
         imgLink={
           "https://i.pinimg.com/564x/9f/15/6f/9f156f1820e5970fcb4ed6194680b590.jpg"
         }

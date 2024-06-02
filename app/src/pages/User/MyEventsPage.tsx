@@ -30,7 +30,7 @@ export default function MyEventsPage() {
       <div className="header mt-12 flex flex-col gap-12">
         <h1 className="text-5xl font-bold">Seus eventos</h1>
         <Link
-          to={"/register"}
+          to={"/organize"}
           className="w-fit rounded-full bg-black px-8 py-3 font-bold text-white hover:shadow-md"
         >
           Novo Evento

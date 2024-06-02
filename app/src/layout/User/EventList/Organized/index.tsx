@@ -12,7 +12,7 @@ export default function Organized() {
         id={1}
         title={"Mania de LLM - março de 2024"}
         eventType={"Comunidade"}
-        rewardPrice={999.99}
+        rewardPrice={0}
         partipationsCount={1241}
         daysAfterStart={14}
         imgLink={

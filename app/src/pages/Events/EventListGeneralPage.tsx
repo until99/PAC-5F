@@ -24,19 +24,12 @@ export default function EventListGeneralPage() {
 
       <CardListMinItem
         id={1}
+        title="Home Credit - Credit Risk Model Stability"
+        eventType="Patrocinado"
+        daysAfterStart={1}
+        partipationsCount={38}
+        rewardPrice={535.99}
         imgLink="https://i.pinimg.com/564x/e6/3e/5e/e63e5e790e382b4b76384475e7f3e8a0.jpg"
-      />
-      <CardListMinItem
-        id={1}
-        imgLink="https://i.pinimg.com/564x/1f/0e/0f/1f0e0f2fd1e20cb476db6387f16ee997.jpg"
-      />
-      <CardListMinItem
-        id={1}
-        imgLink="https://i.pinimg.com/736x/6a/65/e3/6a65e3d6ed74e8b153b4ba2012c4a025.jpg"
-      />
-      <CardListMinItem
-        id={1}
-        imgLink="https://i.pinimg.com/736x/53/3a/ae/533aae59b19a0a6eda6fe2a055d8beeb.jpg"
       />
 
       <Footer />

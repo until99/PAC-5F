@@ -3,12 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import NoMatch from "@/pages/NoMatch/404"; // 404
 import Home from "@/pages/HomePage"; // Landing page
 
-import Events from "@/pages/Event/EventListPage"; // events
-import OrganizeEvents from "@/pages/Event/EventCreatePage"; // create event form
-import EventDetails from "@/pages/Event/EventDetailPage"; // event detail by id
+import Events from "@/pages/Events/EventListPage"; // events
+import OrganizeEvents from "@/pages/Events/EventCreatePage"; // create event form
+import EventDetails from "@/pages/Events/EventDetailPage"; // event detail by id
 import RegisterPage from "./pages/Login&Register/RegisterPage";
 import LoginPage from "./pages/Login&Register/loginPage";
-import EventListGeneralPage from "./pages/Event/EventListGeneralPage";
+import EventListGeneralPage from "./pages/Events/EventListGeneralPage";
 import MyEventsPage from "./pages/User/MyEventsPage";
 import ProfilePage from "./pages/User/ProfilePage";
 
