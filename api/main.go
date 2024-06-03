@@ -35,3 +35,10 @@ func main() {
 		log.Fatalf("Failed to run server: %v", err)
 	}
 }
+
+// events
+// 665cc59ae10537f0a3679fbe
+// 665cc59ae10537f0a3679fbf
+
+// user
+// 665c3c35e10537f0a3679fba

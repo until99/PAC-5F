@@ -36,7 +36,7 @@ export default function EventSearchTopicSection() {
         className="w-full rounded-3xl border-2 border-solid border-gray-200 bg-magnifier bg-[length:1.25rem] bg-[0.75rem] bg-no-repeat px-4 py-2 indent-6 text-base outline-none placeholder:text-gray-800"
         placeholder="Procurar competições"
       />
-      <div className="mt-6 flex gap-6">
+      {/* <div className="mt-6 flex gap-6">
         {eventFilterCards.map((card, index) => (
           <Link
             key={index}
@@ -50,7 +50,7 @@ export default function EventSearchTopicSection() {
             <p className="mt-4 text-gray-500">{card.content}</p>
           </Link>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

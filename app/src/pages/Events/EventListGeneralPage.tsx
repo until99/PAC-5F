@@ -1,10 +1,33 @@
-import CardListMinItem from "@/layout/Cards/CardListMinItem";
-import Footer from "@/layout/Footer";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "@/layout/Navbar";
-
+import Footer from "@/layout/Footer";
+import CardListMinItem from "@/layout/Cards/CardListMinItem";
 import { Trophy } from "lucide-react";
 
+interface Event {
+  id: string;
+  title: string;
+  subtitle: string;
+  reward: number;
+  cover_image: string;
+  started_date: string;
+}
+
 export default function EventListGeneralPage() {
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    axios
+      .get<Event[]>("http://localhost:8080/events")
+      .then((response) => {
+        setEvents(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -22,15 +45,20 @@ export default function EventListGeneralPage() {
 
       <h1 className="mt-12 text-2xl font-bold">Resultados</h1>
 
-      <CardListMinItem
-        id={1}
-        title="Home Credit - Credit Risk Model Stability"
-        eventType="Patrocinado"
-        daysAfterStart={1}
-        partipationsCount={38}
-        rewardPrice={535.99}
-        imgLink="https://i.pinimg.com/564x/e6/3e/5e/e63e5e790e382b4b76384475e7f3e8a0.jpg"
-      />
+      <div className="flex flex-wrap justify-start gap-4">
+        {events.map((event) => (
+          <CardListMinItem
+            key={event.id}
+            id={parseInt(event.id)} // Converter para número
+            title={event.title}
+            eventType={event.subtitle} // Corrigido para eventType
+            rewardPrice={event.reward}
+            partipationsCount={0} // Defina o valor desejado
+            daysAfterStart={0} // Defina o valor desejado
+            imgLink={event.cover_image}
+          />
+        ))}
+      </div>
 
       <Footer />
     </>

@@ -23,7 +23,7 @@ export default function CardListMinItem({
     <>
       <Link
         to={`/events/${id}`}
-        className="card-list-min mt-8 flex gap-8 rounded-lg"
+        className="card-list-min mt-8 flex w-full gap-8 rounded-lg "
       >
         <div className="img-wrapper h-28 w-28">
           <img
@@ -42,7 +42,7 @@ export default function CardListMinItem({
           </p>
         </div>
       </Link>
-      <hr className="mt-6 border border-gray-300" />
+      <hr className="mt-6 w-full border border-gray-300" />
     </>
   );
 }

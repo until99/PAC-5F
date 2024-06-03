@@ -91,7 +91,7 @@ func GetOrganizerEvents(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
-	events, err := services.GetEventsByUserID(context.Background(), id, true)
+	events, err := services.GetEventsByUserID(context.Background(), id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -99,16 +99,16 @@ func GetOrganizerEvents(c *gin.Context) {
 	c.JSON(http.StatusOK, events)
 }
 
-func GetNonOrganizerEvents(c *gin.Context) {
-	id, err := primitive.ObjectIDFromHex(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
-	events, err := services.GetEventsByUserID(context.Background(), id, false)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, events)
-}
+// func GetNonOrganizerEvents(c *gin.Context) {
+// 	id, err := primitive.ObjectIDFromHex(c.Param("id"))
+// 	if err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+// 		return
+// 	}
+// 	events, err := services.GetEventsByUserID(context.Background(), id)
+// 	if err != nil {
+// 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+// 		return
+// 	}
+// 	c.JSON(http.StatusOK, events)
+// }
