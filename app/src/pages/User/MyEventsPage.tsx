@@ -28,7 +28,13 @@ export default function MyEventsPage() {
     <>
       <Navbar />
       <div className="header mt-12 flex flex-col gap-12">
-        <h1 className="text-5xl font-bold">Seus eventos</h1>
+        <div className="title">
+          <h1 className="text-5xl font-bold">Seus eventos</h1>
+          <p className="text-gray-500">
+            A fins de prazo, não foi implementada a função de login e registro,
+            então seu id é "665c3c35e10537f0a3679fba"
+          </p>
+        </div>
         <Link
           to={"/organize"}
           className="w-fit rounded-full bg-black px-8 py-3 font-bold text-white hover:shadow-md"

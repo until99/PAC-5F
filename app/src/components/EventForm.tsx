@@ -1,45 +1,35 @@
 import React, { useState } from "react";
-
-interface Section {
-  title: string;
-  content: string;
-  [key: string]: string; // Permitir indexação por string
-}
+import axios from "axios";
 
 const EventForm: React.FC = () => {
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [reward, setReward] = useState("");
-  const [coverImage, setCoverImage] = useState("");
-  const [startedDate, setStartedDate] = useState("");
-  const [finishDate, setFinishDate] = useState("");
-  const [sections, setSections] = useState<Section[]>([
-    { title: "", content: "" },
-  ]);
+  const [eventData, setEventData] = useState({
+    title: "",
+    subtitle: "",
+    reward: 0,
+    cover_image: "",
+    started_date: "",
+    finish_date: "",
+    sections_title: "",
+    sections_content: "",
+    registered_amount: 0,
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setEventData({ ...eventData, [name]: value });
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const payload = {
-      title,
-      subtitle,
-      reward: reward === "0" ? "comunidade" : reward,
-      cover_image: coverImage,
-      started_date: startedDate,
-      finish_date: finishDate,
-      sections_title: sections.map((section) => section.title),
-      sections_content: sections.map((section) => section.content),
-    };
-
     try {
-      const response = await fetch("http://localhost:8080/api/v1/event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await axios.post(
+        "http://localhost:8080/events",
+        eventData
+      );
 
-      if (response.ok) {
+      if (response.status === 200) {
         alert("Event created successfully");
       } else {
         alert("Failed to create event");
@@ -53,164 +43,147 @@ const EventForm: React.FC = () => {
     }
   };
 
-  const handleSectionChange = (
-    index: number,
-    field: keyof Section,
-    value: string
-  ) => {
-    const newSections = [...sections];
-    newSections[index][field] = value;
-    setSections(newSections);
-  };
-
-  const addSection = () => {
-    setSections([...sections, { title: "", content: "" }]);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-2xl p-4">
+    <form onSubmit={handleSubmit} className="max-w-2xl p-4">
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="title"
+          className="block text-sm font-bold text-gray-700"
         >
           Title
         </label>
         <input
-          id="title"
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="title"
+          name="title"
+          value={eventData.title}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="subtitle"
+          className="block text-sm font-bold text-gray-700"
         >
           Subtitle
         </label>
         <input
-          id="subtitle"
           type="text"
-          value={subtitle}
-          onChange={(e) => setSubtitle(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="subtitle"
+          name="subtitle"
+          value={eventData.subtitle}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="reward"
+          className="block text-sm font-bold text-gray-700"
         >
           Reward
         </label>
         <input
+          type="text"
           id="reward"
-          type="number"
-          value={reward}
-          onChange={(e) => setReward(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          name="reward"
+          value={eventData.reward}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="cover_image"
+          className="block text-sm font-bold text-gray-700"
         >
           Cover Image
         </label>
         <input
-          id="cover_image"
           type="text"
-          value={coverImage}
-          onChange={(e) => setCoverImage(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="cover_image"
+          name="cover_image"
+          value={eventData.cover_image}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="started_date"
+          className="block text-sm font-bold text-gray-700"
         >
           Started Date
         </label>
         <input
-          id="started_date"
           type="date"
-          value={startedDate}
-          onChange={(e) => setStartedDate(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="started_date"
+          name="started_date"
+          value={eventData.started_date}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
       <div className="mb-4">
         <label
-          className="mb-2 block text-sm font-bold text-gray-700"
           htmlFor="finish_date"
+          className="block text-sm font-bold text-gray-700"
         >
           Finish Date
         </label>
         <input
-          id="finish_date"
           type="date"
-          value={finishDate}
-          onChange={(e) => setFinishDate(e.target.value)}
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="finish_date"
+          name="finish_date"
+          value={eventData.finish_date}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
           required
         />
       </div>
-      {sections.map((section, index) => (
-        <div key={index} className="mb-4">
-          <label
-            className="mb-2 block text-sm font-bold text-gray-700"
-            htmlFor={`section_title_${index}`}
-          >
-            Section Title {index + 1}
-          </label>
-          <input
-            id={`section_title_${index}`}
-            type="text"
-            value={section.title}
-            onChange={(e) =>
-              handleSectionChange(index, "title", e.target.value)
-            }
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-            required
-          />
-          <label
-            className="mb-2 block text-sm font-bold text-gray-700"
-            htmlFor={`section_content_${index}`}
-          >
-            Section Content {index + 1}
-          </label>
-          <textarea
-            id={`section_content_${index}`}
-            value={section.content}
-            onChange={(e) =>
-              handleSectionChange(index, "content", e.target.value)
-            }
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-            required
-          />
-        </div>
-      ))}
-      <button
-        type="button"
-        onClick={addSection}
-        className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-      >
-        Add Section
-      </button>
+      <div className="mb-4">
+        <label
+          htmlFor="sections_title"
+          className="block text-sm font-bold text-gray-700"
+        >
+          Sections Title
+        </label>
+        <input
+          type="text"
+          id="sections_title"
+          name="sections_title"
+          value={eventData.sections_title}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="sections_content"
+          className="block text-sm font-bold text-gray-700"
+        >
+          Sections Content
+        </label>
+        <textarea
+          id="sections_content"
+          name="sections_content"
+          value={eventData.sections_content}
+          onChange={handleChange}
+          className="rounded-3xl border-2 border-solid border-gray-200  px-4 py-2  text-base outline-none"
+          required
+        />
+      </div>
       <div className="mt-4">
         <button
           type="submit"
-          className="focus:shadow-outline rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700 focus:outline-none"
+          className="rounded-full bg-black px-8 py-3 font-bold text-white hover:shadow-md"
         >
           Submit
         </button>

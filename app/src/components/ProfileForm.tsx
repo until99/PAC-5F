@@ -1,35 +1,30 @@
-// components/ProfileForm.tsx
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ProfileInput from "./ProfileInput";
 
 const ProfileForm: React.FC = () => {
   const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
+    email: "",
     password: "",
-    profileImageUrl: "",
+    profile_url_image: "",
   });
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/v1/profile/1", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:8080/users/665c3c35e10537f0a3679fba"
+        );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch profile");
-        }
-
-        const data = await response.json();
+        const data = response.data;
         setProfile({
-          firstName: data.firstName,
-          lastName: data.lastName,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
           password: data.password,
-          profileImageUrl: data.profileImageUrl,
+          profile_url_image: data.profile_url_image,
         });
       } catch (error) {
         console.error(error);
@@ -46,17 +41,10 @@ const ProfileForm: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/v1/profile", {
-        method: "PUT", // Change to PUT method for updating
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(profile),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update profile");
-      }
+      await axios.put(
+        "http://localhost:8080/users/665c3c35e10537f0a3679fba",
+        profile
+      );
 
       alert("Profile updated successfully");
     } catch (error) {
@@ -69,21 +57,28 @@ const ProfileForm: React.FC = () => {
     <div className="flex flex-col items-center gap-12">
       <img
         className="w-64 rounded-full"
-        src={profile.profileImageUrl}
+        src={profile.profile_url_image}
         alt="profile icon"
       />
       <ProfileInput
         label="Nome"
         type="text"
-        name="firstName"
-        value={profile.firstName}
+        name="first_name"
+        value={profile.first_name}
         onChange={handleChange}
       />
       <ProfileInput
         label="Sobrenome"
         type="text"
-        name="lastName"
-        value={profile.lastName}
+        name="last_name"
+        value={profile.last_name}
+        onChange={handleChange}
+      />
+      <ProfileInput
+        label="Email"
+        type="email"
+        name="email"
+        value={profile.email}
         onChange={handleChange}
       />
       <ProfileInput
@@ -96,8 +91,8 @@ const ProfileForm: React.FC = () => {
       <ProfileInput
         label="Profile Url Image"
         type="text"
-        name="profileImageUrl"
-        value={profile.profileImageUrl}
+        name="profile_url_image"
+        value={profile.profile_url_image}
         onChange={handleChange}
       />
       <button

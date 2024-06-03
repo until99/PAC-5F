@@ -80,3 +80,36 @@ func DeleteUser(ctx context.Context, id primitive.ObjectID) error {
 	}
 	return nil
 }
+
+func GetEventsByUserID(ctx context.Context, userID primitive.ObjectID, isOrganizer bool) ([]models.Event, error) {
+	membershipCollection := config.GetCollection("TB_MEMBERSHIP")
+	eventCollection := config.GetCollection("TB_EVENTS")
+
+	var memberships []models.Membership
+	filter := bson.M{"id_users": userID, "is_organizer": isOrganizer}
+	cursor, err := membershipCollection.Find(ctx, filter)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	for cursor.Next(ctx) {
+		var membership models.Membership
+		if err := cursor.Decode(&membership); err != nil {
+			return nil, err
+		}
+		memberships = append(memberships, membership)
+	}
+
+	var events []models.Event
+	for _, membership := range memberships {
+		var event models.Event
+		err := eventCollection.FindOne(ctx, bson.M{"_id": membership.EventID}).Decode(&event)
+		if err != nil {
+			return nil, err
+		}
+		events = append(events, event)
+	}
+
+	return events, nil
+}
